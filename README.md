@@ -68,7 +68,7 @@ The platform supports both production deployment and development environments wi
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Max-Eee/Quantum-Network-Security-Platform?tab=readme-ov-file
    cd Quantum
    ```
 
