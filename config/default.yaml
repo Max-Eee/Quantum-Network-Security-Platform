@@ -1,0 +1,237 @@
+# Default Configuration for Quantum Network Platform
+# This file contains default settings for all platform components
+
+# Network Configuration
+network:
+  topology:
+    initial_nodes: 8
+    auto_connect: true
+    connection_probability: 0.4
+    grid_size: [300, 300]
+  
+  simulation:
+    time_step: 0.1  # seconds
+    max_simulation_time: 7200  # 2 hours
+    real_time_factor: 1.0
+
+# Routing Configuration
+routing:
+  protocol: "quantum_aware"  # dijkstra, quantum_aware, entanglement_swapping
+  update_interval: 30  # seconds
+  max_path_length: 10
+  load_balancing: true
+
+# Key Distribution Center Configuration
+kdc:
+  key_length: 256  # bits
+  refresh_interval: 300  # seconds (5 minutes)
+  protocols: ["bb84", "e91", "sarg04"]
+  max_keys_per_pair: 5
+  key_lifetime: 600  # seconds (10 minutes)
+  
+  # Protocol-specific settings
+  bb84:
+    basis_probability: 0.5
+    error_threshold: 0.11
+  
+  e91:
+    bell_state_fidelity: 0.95
+    measurement_bases: ["Z", "X", "ZX"]
+
+# Security Configuration
+security:
+  eavesdrop_threshold: 0.11  # QBER threshold for eavesdropping detection
+  monitoring_interval: 1.0  # seconds
+  alert_threshold: 0.05  # threshold for security alerts
+  
+  # Anomaly detection thresholds
+  thresholds:
+    qber_variance: 0.01
+    event_rate_1min: 5
+    event_rate_5min: 15
+    event_rate_15min: 30
+
+# AI/ML Configuration
+ai:
+  model_type: "lstm"  # lstm, transformer, isolation_forest
+  training_window: 1000
+  prediction_threshold: 0.8
+  
+  # Model parameters
+  lstm:
+    hidden_size: 64
+    num_layers: 2
+    sequence_length: 50
+  
+  # Training configuration
+  training:
+    batch_size: 32
+    learning_rate: 0.001
+    epochs: 100
+    validation_split: 0.2
+
+# API Configuration
+api:
+  host: "0.0.0.0"
+  port: 8080
+  cors_enabled: true
+  
+  # Authentication (if enabled)
+  authentication:
+    enabled: false
+    jwt_secret: "your-secret-key"
+    token_expiry: 3600  # seconds
+  
+  # Rate limiting
+  rate_limiting:
+    enabled: true
+    requests_per_minute: 100
+
+# Dashboard Configuration
+dashboard:
+  enabled: true
+  host: "0.0.0.0"
+  port: 3000
+  update_interval: 5.0  # seconds
+  
+  # Visualization settings
+  visualization:
+    node_size_range: [10, 30]
+    connection_width_range: [1, 5]
+    animation_duration: 1000  # ms
+    color_scheme: "quantum"
+
+# Logging Configuration
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  format: "<green>{time}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>"
+  
+  # File logging
+  file:
+    enabled: true
+    path: "logs/quantum_network.log"
+    rotation: "1 day"
+    retention: "1 month"
+  
+  # Component-specific log levels
+  components:
+    core: "INFO"
+    routing: "INFO"
+    kdc: "INFO"
+    security: "DEBUG"
+    ai: "INFO"
+    api: "INFO"
+    dashboard: "INFO"
+
+# Performance Monitoring
+performance:
+  monitoring_enabled: true
+  metrics_interval: 30  # seconds
+  
+  # Alert thresholds
+  thresholds:
+    memory_threshold: 0.85  # 85%
+    cpu_threshold: 0.90     # 90%
+    disk_threshold: 0.90    # 90%
+    network_threshold: 100  # MB/s
+  
+  # Metrics retention
+  retention:
+    memory_history: 1000    # number of data points
+    export_interval: 3600   # seconds (1 hour)
+
+# Database Configuration (if needed)
+database:
+  enabled: false
+  type: "sqlite"  # sqlite, postgresql, mysql
+  
+  # SQLite configuration
+  sqlite:
+    path: "data/quantum_network.db"
+  
+  # PostgreSQL configuration
+  postgresql:
+    host: "localhost"
+    port: 5432
+    database: "quantum_network"
+    username: "quantum_user"
+    password: "quantum_pass"
+
+# Quantum Simulation Parameters
+quantum:
+  # TensorFlow Quantum Configuration
+  tfq:
+    # Circuit Configuration
+    num_qubits: 8
+    circuit_depth: 3
+    shots: 1000
+    
+    # Backend Configuration
+    backend: "cirq_simulator"  # Options: cirq_simulator, qsim, hardware
+    noise_model: false
+    
+    # Machine Learning Configuration
+    ml:
+      batch_size: 32
+      learning_rate: 0.001
+      epochs: 100
+      optimizer: "adam"
+      loss_function: "sparse_categorical_crossentropy"
+      
+      # Quantum Layer Configuration
+      quantum_layers: 2
+      classical_layers: 1
+      activation: "relu"
+      dropout_rate: 0.2
+      
+    # Quantum Algorithms
+    algorithms:
+      vqe:
+        enabled: true
+        max_iterations: 100
+        convergence_threshold: 1e-6
+        
+      qaoa:
+        enabled: true
+        p: 3  # Number of QAOA layers
+        
+      qsvm:
+        enabled: true
+        feature_map: "ZZFeatureMap"
+        
+      qgan:
+        enabled: false
+        generator_layers: 3
+        discriminator_layers: 2
+  
+  # Noise models
+  noise:
+    enabled: true
+    depolarizing_rate: 0.001
+    dephasing_rate: 0.0005
+    amplitude_damping_rate: 0.0002
+  
+  # Fidelity parameters
+  fidelity:
+    minimum_acceptable: 0.90
+    target_fidelity: 0.99
+    measurement_accuracy: 0.001
+  
+  # Channel parameters
+  channels:
+    fiber_loss_db_km: 0.2  # dB/km
+    coupling_efficiency: 0.8
+    detector_efficiency: 0.9
+    dark_count_rate: 100  # Hz
+
+# Development and Testing
+development:
+  debug_mode: false
+  mock_hardware: true
+  simulation_speed: 1.0
+  
+  # Testing configuration
+  testing:
+    generate_test_data: true
+    test_data_size: 1000
+    random_seed: 42

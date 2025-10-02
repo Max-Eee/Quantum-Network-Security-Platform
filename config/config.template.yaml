@@ -1,0 +1,179 @@
+# Quantum Network Security Platform Configuration
+# Copy this file to config/local.yaml and customize for your environment
+
+# Quantum Engine Configuration
+quantum:
+  # Quantum computing backend
+  backend: "tensorflow_quantum"  # Options: tensorflow_quantum, cirq, qiskit
+  
+  # Quantum circuit settings
+  circuit:
+    max_qubits: 20
+    max_depth: 100
+    noise_model: "ideal"  # Options: ideal, depolarizing, amplitude_damping
+    
+  # Quantum machine learning
+  ml:
+    optimizer: "adam"
+    learning_rate: 0.01
+    epochs: 100
+    batch_size: 32
+
+# Network Configuration
+network:
+  # Default network topology
+  nodes: 5
+  topology: "mesh"  # Options: mesh, star, ring, tree
+  
+  # Connection settings
+  connection:
+    max_distance: 100  # km
+    default_fidelity: 0.95
+    
+  # Routing configuration
+  routing:
+    algorithm: "dijkstra"  # Options: dijkstra, astar, quantum_optimized
+    load_balancing: true
+
+# Security Configuration
+security:
+  # Quantum Key Distribution
+  qkd:
+    protocols: ["bb84", "e91", "sarg04"]
+    key_length: 256
+    error_threshold: 0.11
+    
+  # Eavesdropping detection
+  detection:
+    enabled: true
+    chsh_threshold: 2.0
+    error_rate_threshold: 0.1
+    
+  # Post-quantum cryptography
+  pqc:
+    enabled: true
+    algorithms: ["kyber", "dilithium", "falcon"]
+
+# AI/ML Configuration
+ai:
+  # Anomaly detection
+  anomaly_detection:
+    enabled: true
+    model: "lstm"  # Options: lstm, transformer, quantum_enhanced
+    threshold: 0.7
+    
+  # Network behavior analysis
+  behavior_analysis:
+    window_size: 100
+    learning_rate: 0.001
+
+# API Configuration
+api:
+  # Server settings
+  host: "127.0.0.1"
+  port: 8080
+  cors_enabled: true
+  
+  # Authentication (configure with secure values)
+  authentication:
+    enabled: false
+    jwt_secret: "CHANGE_THIS_SECRET_KEY_IN_PRODUCTION"  # Use environment variable
+    token_expiry: 3600  # seconds
+  
+  # Rate limiting
+  rate_limiting:
+    enabled: true
+    requests_per_minute: 100
+
+# Dashboard Configuration
+dashboard:
+  # Dashboard server settings
+  host: "0.0.0.0"
+  port: 3000
+  
+  # Visualization settings
+  visualization:
+    update_interval: 1000  # ms
+    max_history: 1000
+    themes: ["light", "dark", "quantum"]
+
+# Monitoring Configuration
+monitoring:
+  # System monitoring
+  system:
+    enabled: true
+    interval: 5  # seconds
+    metrics: ["cpu", "memory", "network", "quantum"]
+    
+  # Performance tracking
+  performance:
+    enabled: true
+    retention: 7  # days
+    
+  # Logging configuration
+  logging:
+    level: "INFO"  # Options: DEBUG, INFO, WARNING, ERROR
+    file: "logs/quantum_platform.log"
+    max_size: 50  # MB
+    backup_count: 5
+
+# Database Configuration (if using persistent storage)
+database:
+  # Use environment variables for sensitive data
+  type: "sqlite"  # Options: sqlite, postgresql, mongodb
+  host: "localhost"
+  port: 5432
+  name: "quantum_network"
+  username: "quantum_user"  # Use environment variable
+  password: "CHANGE_THIS_PASSWORD"  # Use environment variable
+
+# External Services (configure if needed)
+external_services:
+  # Redis (for caching and session management)
+  redis:
+    host: "localhost"
+    port: 6379
+    password: ""  # Use environment variable if needed
+    
+  # Prometheus (for metrics collection)
+  prometheus:
+    enabled: false
+    push_gateway: "http://localhost:9091"
+    
+  # External APIs (use environment variables)
+  apis:
+    quantum_cloud: ""  # API endpoint
+    api_key: ""  # Use environment variable
+
+# Development Configuration
+development:
+  # Debug settings
+  debug: true
+  hot_reload: true
+  
+  # Testing
+  testing:
+    mock_quantum_hardware: true
+    synthetic_data: true
+    
+  # Profiling
+  profiling:
+    enabled: false
+    output_dir: "profiles/"
+
+# Production Configuration
+production:
+  # Security settings
+  security:
+    force_https: true
+    secure_cookies: true
+    
+  # Performance settings
+  performance:
+    workers: 4
+    max_connections: 1000
+    
+  # Monitoring
+  monitoring:
+    sentry_dsn: ""  # Use environment variable
+    datadog_api_key: ""  # Use environment variable
